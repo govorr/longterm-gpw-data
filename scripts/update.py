@@ -59,8 +59,15 @@ def fetch(symbol):
             time.sleep(2 * (attempt + 1))
 
 def metrics(rows):
+    if not rows:
+        raise ValueError("No OHLCV candles")
     if len(rows) < 201:
-        raise ValueError(f"Insufficient history: {len(rows)} candles")
+        last = rows[-1]
+        return {"date": last["date"], "close": round(last["close"], 4),
+                "volume": int(last["volume"]), "ma50": None, "ma200": None,
+                "atr14": None, "previous_20d_high": None,
+                "technical_buy_candidate": False, "history_sessions": len(rows),
+                "note": "Insufficient history for MA200; no buy signal"}
     closes = [r["close"] for r in rows]
     true_ranges = []
     for i, r in enumerate(rows):
