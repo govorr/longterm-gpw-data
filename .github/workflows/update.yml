@@ -2,7 +2,8 @@ name: Yahoo GPW daily update
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 21 * * 1-5'
+    - cron: '0 19 * * 1-5'
+      timezone: 'Europe/Warsaw'
 permissions:
   contents: write
 jobs:
