@@ -8,6 +8,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from zoneinfo import ZoneInfo
 from statistics import mean
 
 STOCKS = {
@@ -108,7 +109,10 @@ def main():
     if len(dates) != 1:
         sys.exit("ERROR: inconsistent final bar dates; NOT publishing: " + repr(dates))
     last_day = dt.date.fromisoformat(next(iter(dates)))
-    if (dt.datetime.now(dt.timezone.utc).date() - last_day).days > 4:
+    today_warsaw = dt.datetime.now(ZoneInfo("Europe/Warsaw")).date()
+    if today_warsaw.weekday() < 5 and last_day != today_warsaw:
+        sys.exit("ERROR: latest session not from today; NOT publishing: " + last_day.isoformat())
+    if (today_warsaw - last_day).days > 4:
         sys.exit("ERROR: stale data; NOT publishing")
     data["session_date"] = last_day.isoformat()
     pathlib.Path("docs").mkdir(exist_ok=True)
