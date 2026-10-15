@@ -33,7 +33,7 @@ jobs:
                       print("CONTENT-LENGTH:",response.headers.get("Content-Length"))
                       print("CONTENT-RANGE:",response.headers.get("Content-Range"))
                       print("FIRST-BYTES:",repr(header[:80]))
-                      if header.startswith(b"PK\\x03\\x04"):
+                      if header[:2] == b"PK":
                           print("RESULT: ZIP signature confirmed; access possible")
                       elif b"verify your browser" in header.lower() or b"javascript" in header.lower():
                           print("RESULT: browser verification / CAPTCHA blocking automated access")
