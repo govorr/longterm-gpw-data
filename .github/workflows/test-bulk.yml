@@ -1,0 +1,47 @@
+name: Test Stooq bulk downloads
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe static bulk archive without downloading 195 MB
+        shell: python
+        run: |
+          import urllib.request, urllib.error
+          targets = [
+              ("Historical PL daily ASCII", "https://static.stooq.com/db/h/d_pl_txt.zip"),
+              ("Same file on stooq.com", "https://stooq.com/db/h/d_pl_txt.zip"),
+              ("Daily updates page", "https://stooq.pl/db/")
+          ]
+          for label,url in targets:
+              print("\nSOURCE:",label)
+              print("URL:",url)
+              try:
+                  request=urllib.request.Request(url,headers={
+                      "User-Agent":"Mozilla/5.0",
+                      "Range":"bytes=0-255",
+                      "Accept":"application/zip,text/html,*/*"
+                  })
+                  with urllib.request.urlopen(request,timeout=25) as response:
+                      header=response.read(256)
+                      print("HTTP:",response.status)
+                      print("CONTENT-TYPE:",response.headers.get("Content-Type"))
+                      print("CONTENT-LENGTH:",response.headers.get("Content-Length"))
+                      print("CONTENT-RANGE:",response.headers.get("Content-Range"))
+                      print("FIRST-BYTES:",repr(header[:80]))
+                      if header.startswith(b"PK\\x03\\x04"):
+                          print("RESULT: ZIP signature confirmed; access possible")
+                      elif b"verify your browser" in header.lower() or b"javascript" in header.lower():
+                          print("RESULT: browser verification / CAPTCHA blocking automated access")
+                      elif b"unauthorized" in header.lower() or b"access denied" in header.lower():
+                          print("RESULT: access denied")
+                      else:
+                          print("RESULT: not confirmed ZIP; investigate")
+              except urllib.error.HTTPError as e:
+                  print("HTTP ERROR:",e.code,e.reason)
+              except Exception as e:
+                  print("ERROR:",type(e).__name__,str(e)[:200])
