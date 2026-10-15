@@ -1,8 +1,6 @@
-name: Stooq GPW daily update
+name: Yahoo GPW daily update
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '30 21 * * 1-5'
 permissions:
   contents: write
 jobs:
@@ -15,8 +13,6 @@ jobs:
         with:
           python-version: '3.12'
       - name: Download and calculate
-        env:
-          STOOQ_API_KEY: ${{ secrets.STOOQ_API_KEY }}
         run: python scripts/update.py
       - name: Publish verified results
         run: |
