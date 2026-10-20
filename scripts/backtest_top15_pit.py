@@ -67,7 +67,7 @@ for name,series in prices.items():
   breakout=series[d][3]>max(series[x][1] for x in ds[i-20:i])
   f[d]={"ma50":ma50,"ma200":ma200,"buy":series[d][3]>ma200 and ma50>prev_ma50 and breakout,"below50":series[d][3]<ma50}
  features[name]=f
-def simulate(mode):
+def simulate(mode,top_n=15):
  cash=10000.; positions={}; orders=[]; equity=[]; trades=[]; skipped=0
  for i,d in enumerate(all_dates):
   if i==0:continue
@@ -90,7 +90,7 @@ def simulate(mode):
   if d=="2024-06-04" and "TIM" in positions:
    p=positions.pop("TIM");cash+=p["qty"]*prices["TIM"][d][3]
    trades.append({"date":d,"name":"TIM","action":"SELL","shares":p["qty"],"price":prices["TIM"][d][3],"reason":"DELISTING PROXY last close; corporate cash settlement not verified","pnl":round(p["qty"]*(prices["TIM"][d][3]-p["entry"]),2)})
-  universe=active(prev)
+  universe=active(prev)[:top_n]
   for name in universe:
    if len(positions)>=5:break
    if name=="BRAND24" or name in positions or name not in prices:continue
@@ -110,13 +110,14 @@ def simulate(mode):
  # Mark residual positions at end, not fictional closing trades
  peak=10000;maxdd=0
  for _,v in equity:peak=max(peak,v);maxdd=min(maxdd,v/peak-1)
- return {"mode":mode,"start_capital":10000,"end_equity":equity[-1][1],"return_pct":round((equity[-1][1]/10000-1)*100,2),"max_drawdown_pct":round(maxdd*100,2),"buy_orders":sum(t["action"]=="BUY" for t in trades),"sell_orders":sum(t["action"]=="SELL" for t in trades),"open_positions":{k:v["qty"] for k,v in positions.items()},"skipped_small_orders":skipped},trades,equity
+ return {"mode":mode,"top_n":top_n,"start_capital":10000,"end_equity":equity[-1][1],"return_pct":round((equity[-1][1]/10000-1)*100,2),"max_drawdown_pct":round(maxdd*100,2),"buy_orders":sum(t["action"]=="BUY" for t in trades),"sell_orders":sum(t["action"]=="SELL" for t in trades),"open_positions":{k:v["qty"] for k,v in positions.items()},"skipped_small_orders":skipped},trades,equity
 results=[]
-for mode in ("TP30","MA50","HALF"):
- summary,trades,equity=simulate(mode);results.append(summary)
- for filename,rows,fields in [(mode+"_trades.csv",trades,["date","name","action","shares","price","reason","pnl"]),(mode+"_equity.csv",[dict(date=d,equity=v) for d,v in equity],["date","equity"])]:
-  with (OUT/filename).open("w",newline="") as f:
-   w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(rows)
+for top_n in (3,5,10,15):
+ for mode in ("TP30","MA50","HALF"):
+  summary,trades,equity=simulate(mode,top_n);results.append(summary)
+  for filename,rows,fields in [(mode+"_TOP"+str(top_n)+"_trades.csv",trades,["date","name","action","shares","price","reason","pnl"]),(mode+"_TOP"+str(top_n)+"_equity.csv",[dict(date=d,equity=v) for d,v in equity],["date","equity"])]:
+   with (OUT/filename).open("w",newline="") as f:
+    w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(rows)
 # Independent WIG benchmark from Stooq. Do not silently substitute WIG20.
 def wig_benchmark():
  local=ROOT/"benchmark"/"WIG_daily_2021_2026.csv"
