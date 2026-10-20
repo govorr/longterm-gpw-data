@@ -1,0 +1,27 @@
+name: Download historical TOP15 GPW prices
+on:
+  push:
+    branches: [research/top15-historical-data]
+    paths:
+      - scripts/download_top15_history.py
+      - .github/workflows/download_top15_history.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download historical prices and record errors
+        run: python scripts/download_top15_history.py
+      - name: Publish CSV and coverage report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/top15/
+          git diff --cached --quiet || (git commit -m "Publish TOP15 historical OHLCV and coverage" && git push)
