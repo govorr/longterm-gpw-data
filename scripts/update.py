@@ -26,7 +26,7 @@ STOCKS = {
     "QNA": "QNA Technology",
     "SEV": "Sevenet",
     "PAS": "Passus",
-    "SON": "Sonka",
+    "SOK": "Sonka",
 }
 # Alternative tickers are not silently guessed. Failed lookup blocks publication.
 def fetch(symbol):
