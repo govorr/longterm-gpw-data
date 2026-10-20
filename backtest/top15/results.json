@@ -54,7 +54,8 @@
     "status": "unavailable",
     "errors": [
       "WIG coverage too short: 0",
-      "WIG coverage too short: 0"
+      "WIG coverage too short: 0",
+      "Yahoo WIG.WA: Yahoo WIG coverage too short: 1"
     ]
   },
   "audit": {
