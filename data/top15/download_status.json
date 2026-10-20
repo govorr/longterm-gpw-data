@@ -132,8 +132,11 @@
       "last": "2026-10-20"
     },
     "CREOTECH QUANTUM": {
-      "status": "unresolved_ticker",
-      "reason": "Manual ticker confirmation required"
+      "status": "ok",
+      "ticker": "CRQ.WA",
+      "bars": 131,
+      "first": "2026-04-17",
+      "last": "2026-10-20"
     },
     "DATAWALK": {
       "status": "ok",
@@ -330,9 +333,11 @@
       "last": "2026-10-20"
     },
     "PRESIDENT STUDIO": {
-      "status": "error",
-      "ticker": "PST.WA",
-      "reason": "HTTP Error 404: Not Found"
+      "status": "ok",
+      "ticker": "PRE.WA",
+      "bars": 341,
+      "first": "2025-06-12",
+      "last": "2026-10-20"
     },
     "PURE BIOLOGICS": {
       "status": "error",
@@ -410,8 +415,11 @@
       "last": "2026-10-20"
     },
     "SYN2BIO": {
-      "status": "unresolved_ticker",
-      "reason": "Manual ticker confirmation required"
+      "status": "ok",
+      "ticker": "S2B.WA",
+      "bars": 132,
+      "first": "2026-04-16",
+      "last": "2026-10-20"
     },
     "TIM": {
       "status": "error",
