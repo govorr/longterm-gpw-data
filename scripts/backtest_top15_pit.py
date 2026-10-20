@@ -7,7 +7,7 @@ aliases={"11 BIT STUDIOS":"11 BIT","VIGO SYSTEM":"VIGO PHOTONICS","RYVU THERAPUE
 status=json.loads((ROOT/"download_status.json").read_text())["companies"]
 def read_csv(p):
  with p.open(encoding="utf-8-sig",newline="") as f:return list(csv.DictReader(f))
-prices={}; quality={}; zero_volume={}
+prices={}; quality={}; zero_volume={}; raw_holiday_rows={}; corporate_event_flags=[]
 for name,meta in status.items():
  if meta["status"]!="ok" or name=="BRAND24":continue
  path=ROOT/"ohlcv"/(meta["ticker"].replace(".","_")+".csv")
@@ -33,6 +33,8 @@ for r in read_csv(ROOT/"source"/"TIM_moneypl.csv"):
  except (ValueError,KeyError):continue
 prices["TIM"]=tim;zero_volume["TIM"]=set();quality["TIM"]={"bars":len(tim),"first":min(tim),"last":max(tim),"source":"Money.pl; turnover is NOT share volume"}
 (OUT/"quality.json").write_text(json.dumps(quality,indent=2,ensure_ascii=False))
+# Audit suspicious rows; zero-volume holiday placeholders are NOT real sessions.
+raw_holiday_rows={n:sorted(d for d in data if d.endswith("-01-01") or d.endswith("-12-25") or d.endswith("-12-26")) for n,data in prices.items()}
 # Reject suspect sessions (e.g. Jan 1) from all series, not just trading signals.
 for name,data in prices.items():
  prices[name]={d:v for d,v in data.items() if dt.date.fromisoformat(d).weekday()<5 and not d.endswith("-01-01") and not d.endswith("-12-25") and not d.endswith("-12-26")}
@@ -40,7 +42,14 @@ for name,data in prices.items():
 assert len(rank)==22
 for r in rank:assert len(r["ranked_companies"])==15,(r["quarter"],len(r["ranked_companies"]))
 reports=sorted(rank,key=lambda r:r["published_at_warsaw"])
-all_dates=sorted(set().union(*(set(v) for v in prices.values())))
+all_dates=sorted(d for d in set().union(*(set(v) for v in prices.values())) if "2021-06-29"<=d<="2026-10-19")
+assert all_dates and all_dates[-1]=="2026-10-19", "Strategy end must match WIG last date"
+# Identify discontinuities potentially caused by splits, symbol changes or other corporate events.
+for n,series in prices.items():
+ ds=sorted(series)
+ for prev_d,d in zip(ds,ds[1:]):
+  ratio=series[d][3]/series[prev_d][3]
+  if ratio>1.7 or ratio<0.6:corporate_event_flags.append({"company":n,"previous_date":prev_d,"date":d,"close_ratio":round(ratio,4),"requires_manual_review":True})
 import bisect
 def active(d):
  i=bisect.bisect_left([r["published_at_warsaw"][:10] for r in reports],d)-1
@@ -87,7 +96,7 @@ def simulate(mode):
    if name=="BRAND24" or name in positions or name not in prices:continue
    if prev not in features[name] or not features[name][prev]["buy"] or d not in prices[name] or d in zero_volume.get(name,set()):continue
    # ensure previous day is actual series trading day, not stale data
-   if prev not in prices[name]:continue
+   if prev not in prices[name] or prev in zero_volume.get(name,set()):continue
    eq=cash+sum(p["qty"]*prices[n].get(prev,(0,0,0,p["last"]))[3] for n,p in positions.items())
    budget=min(cash,eq*.2);op=prices[name][d][0];qty=int(budget//op)
    if qty<1:skipped+=1;continue
@@ -158,8 +167,8 @@ def wig_benchmark():
  except Exception as e:errors.append("Yahoo WIG.WA: "+str(e))
  return {"status":"unavailable","errors":errors}
 benchmark=wig_benchmark()
-audit={"rankings":len(reports),"ranking_size_valid":all(len(r["ranked_companies"])==15 for r in reports),"universe":len(prices),"suspect_january_1_rows":sum(q.get("jan1_rows",0) for q in quality.values()),"excluded":["BRAND24"],"zero_volume_rows":{k:len(v) for k,v in zero_volume.items() if v},"limitations":["Source Yahoo date mapping must be independently verified; Jan 1 bars found","TIM has turnover not share volume; zero-turnover sessions not independently identified","Corporate actions and cash settlement not verified","No fees, slippage or dividends"]}
+audit={"backtest_start":all_dates[0],"backtest_end":all_dates[-1],"raw_holiday_rows":sum(len(v) for v in raw_holiday_rows.values()),"holiday_rows_remaining":sum(1 for v in prices.values() for d in v if d.endswith("-01-01") or d.endswith("-12-25") or d.endswith("-12-26")),"corporate_event_flags":corporate_event_flags,"rankings":len(reports),"ranking_size_valid":all(len(r["ranked_companies"])==15 for r in reports),"universe":len(prices),"suspect_january_1_rows":sum(q.get("jan1_rows",0) for q in quality.values()),"suspect_january_1_rows_remaining":sum(1 for v in prices.values() for d in v if d.endswith("-01-01")),"excluded":["BRAND24"],"zero_volume_rows":{k:len(v) for k,v in zero_volume.items() if v},"limitations":["Raw Yahoo files contain holiday placeholders; holiday rows removed from simulation, timestamp alignment still needs independent cross-source verification","TIM has turnover not share volume; zero-turnover sessions not independently identified","Corporate action discontinuities flagged for review, not automatically adjusted; TIM cash settlement not independently verified","No fees, slippage or dividends; WIG is total-return and stock strategies are price-only"]}
 (OUT/"audit.json").write_text(json.dumps(audit,ensure_ascii=False,indent=2))
 
-(OUT/"results.json").write_text(json.dumps({"strategies":results,"benchmark_wig":benchmark,"audit":audit,"caveats":["No fees, slippage, dividends or corporate actions modeled","Historical rank mapping and Yahoo price adjustments need independent audit","TIM delisting proxy uses last close, not verified cash settlement","Brand24 omitted by user decision","Signals evaluated at prior close; orders filled next opening","No trading at zero-volume sessions is not yet enforced for Yahoo data","Yahoo price dates and holiday rows require validation"]},indent=2,ensure_ascii=False))
+(OUT/"results.json").write_text(json.dumps({"strategies":results,"benchmark_wig":benchmark,"audit":audit,"caveats":["No fees, slippage or dividend reinvestment; corporate actions flagged but not fully adjusted","Historical rank mapping and Yahoo price adjustments need independent audit","TIM delisting proxy uses last close, not verified cash settlement","Brand24 omitted by user decision","Signals evaluated at prior close; orders filled next opening","Yahoo zero-volume sessions blocked for buys and sells; TIM turnover is not share volume","Yahoo price dates and holiday rows require validation"]},indent=2,ensure_ascii=False))
 print(json.dumps(results,indent=2))
