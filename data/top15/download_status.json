@@ -111,8 +111,11 @@
       "last": "2026-10-20"
     },
     "CONSOLEWAY": {
-      "status": "unresolved_ticker",
-      "reason": "Manual ticker confirmation required"
+      "status": "ok",
+      "ticker": "CWA.WA",
+      "bars": 688,
+      "first": "2024-01-19",
+      "last": "2026-10-20"
     },
     "CREEPY JAR": {
       "status": "ok",
@@ -175,8 +178,11 @@
       "last": "2026-10-20"
     },
     "EXCELLENCE": {
-      "status": "unresolved_ticker",
-      "reason": "Manual ticker confirmation required"
+      "status": "ok",
+      "ticker": "EXC.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
     },
     "GENOMTEC": {
       "status": "ok",
@@ -441,8 +447,11 @@
       "last": "2026-10-20"
     },
     "ŻABKA": {
-      "status": "unresolved_ticker",
-      "reason": "Manual ticker confirmation required"
+      "status": "ok",
+      "ticker": "ZAB.WA",
+      "bars": 500,
+      "first": "2024-10-17",
+      "last": "2026-10-20"
     }
   }
 }
