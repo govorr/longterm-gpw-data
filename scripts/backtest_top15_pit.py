@@ -65,9 +65,10 @@ for name,series in prices.items():
   prev_ma50=sum(closes[-51:-1])/50
   ma200=sum(closes[-200:])/200
   breakout=series[d][3]>max(series[x][1] for x in ds[i-20:i])
-  f[d]={"ma50":ma50,"ma200":ma200,"buy":series[d][3]>ma200 and ma50>prev_ma50 and breakout,"below50":series[d][3]<ma50}
+  prior20=max(series[x][1] for x in ds[i-20:i])
+  f[d]={"ma50":ma50,"ma200":ma200,"buy":series[d][3]>ma200 and ma50>prev_ma50 and breakout,"below50":series[d][3]<ma50,"trend":series[d][3]>ma200 and ma50>prev_ma50,"pullback_pct":100*(prior20-series[d][3])/prior20,"rebound":series[d][3]>series[ds[i-1]][1],"near_ma50":abs(series[d][3]/ma50-1)<=0.05}
  features[name]=f
-def simulate(mode,top_n=15):
+def simulate(mode,top_n=15,entry="BREAKOUT"):
  cash=10000.; positions={}; orders=[]; equity=[]; trades=[]; skipped=0
  for i,d in enumerate(all_dates):
   if i==0:continue
@@ -94,14 +95,20 @@ def simulate(mode,top_n=15):
   for name in universe:
    if len(positions)>=5:break
    if name=="BRAND24" or name in positions or name not in prices:continue
-   if prev not in features[name] or not features[name][prev]["buy"] or d not in prices[name] or d in zero_volume.get(name,set()):continue
+   if prev not in features[name] or d not in prices[name] or d in zero_volume.get(name,set()):continue
+   sig=features[name][prev]
+   if entry=="BREAKOUT":eligible=sig["buy"]
+   elif entry=="PULLBACK_8_15":eligible=sig["trend"] and 8<=sig["pullback_pct"]<=15 and sig["near_ma50"] and sig["rebound"]
+   elif entry=="DEEP_15_25":eligible=sig["trend"] and 15<=sig["pullback_pct"]<=25 and sig["near_ma50"] and sig["rebound"]
+   else:raise ValueError("Unknown entry: "+entry)
+   if not eligible:continue
    # ensure previous day is actual series trading day, not stale data
    if prev not in prices[name] or prev in zero_volume.get(name,set()):continue
    eq=cash+sum(p["qty"]*prices[n].get(prev,(0,0,0,p["last"]))[3] for n,p in positions.items())
    budget=min(cash,eq*.2);op=prices[name][d][0];qty=int(budget//op)
    if qty<1:skipped+=1;continue
    cash-=qty*op;positions[name]={"qty":qty,"entry":op,"last":op,"half":False}
-   trades.append({"date":d,"name":name,"action":"BUY","shares":qty,"price":op,"reason":"MA200 rising MA50 20-day breakout","pnl":""})
+   trades.append({"date":d,"name":name,"action":"BUY","shares":qty,"price":op,"reason":entry+" MA200 rising MA50","pnl":""})
   value=cash
   for name,p in positions.items():
    if d in prices[name]:p["last"]=prices[name][d][3]
@@ -110,7 +117,7 @@ def simulate(mode,top_n=15):
  # Mark residual positions at end, not fictional closing trades
  peak=10000;maxdd=0
  for _,v in equity:peak=max(peak,v);maxdd=min(maxdd,v/peak-1)
- return {"mode":mode,"top_n":top_n,"start_capital":10000,"end_equity":equity[-1][1],"return_pct":round((equity[-1][1]/10000-1)*100,2),"max_drawdown_pct":round(maxdd*100,2),"buy_orders":sum(t["action"]=="BUY" for t in trades),"sell_orders":sum(t["action"]=="SELL" for t in trades),"open_positions":{k:v["qty"] for k,v in positions.items()},"skipped_small_orders":skipped},trades,equity
+ return {"mode":mode,"entry":entry,"top_n":top_n,"start_capital":10000,"end_equity":equity[-1][1],"return_pct":round((equity[-1][1]/10000-1)*100,2),"max_drawdown_pct":round(maxdd*100,2),"buy_orders":sum(t["action"]=="BUY" for t in trades),"sell_orders":sum(t["action"]=="SELL" for t in trades),"open_positions":{k:v["qty"] for k,v in positions.items()},"skipped_small_orders":skipped},trades,equity
 results=[]
 for top_n in (3,5,10,15):
  for mode in ("TP30","MA50","HALF"):
@@ -118,6 +125,13 @@ for top_n in (3,5,10,15):
   for filename,rows,fields in [(mode+"_TOP"+str(top_n)+"_trades.csv",trades,["date","name","action","shares","price","reason","pnl"]),(mode+"_TOP"+str(top_n)+"_equity.csv",[dict(date=d,equity=v) for d,v in equity],["date","equity"])]:
    with (OUT/filename).open("w",newline="") as f:
     w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(rows)
+entry_results=[]
+for entry in ("BREAKOUT","PULLBACK_8_15","DEEP_15_25"):
+ summary,trades,equity=simulate("MA50",10,entry);entry_results.append(summary)
+ for filename,rows,fields in [(entry+"_TOP10_MA50_trades.csv",trades,["date","name","action","shares","price","reason","pnl"]),(entry+"_TOP10_MA50_equity.csv",[dict(date=d,equity=v) for d,v in equity],["date","equity"])]:
+  with (OUT/filename).open("w",newline="") as f:
+   w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(rows)
+(OUT/"entry_comparison.json").write_text(json.dumps({"strategies":entry_results,"rules":{"PULLBACK_8_15":"8-15% below previous 20-day high; close within 5% of MA50; close above prior session high; close > MA200; rising MA50","DEEP_15_25":"Same but 15-25% correction","BREAKOUT":"Original TOP10 MA50 breakout"},"limitations":["Exploratory parameters, not independently validated","No costs, dividends or complete corporate-action adjustment"]},ensure_ascii=False,indent=2))
 # Independent WIG benchmark from Stooq. Do not silently substitute WIG20.
 def wig_benchmark():
  local=ROOT/"benchmark"/"WIG_daily_2021_2026.csv"
