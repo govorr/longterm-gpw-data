@@ -21,6 +21,7 @@ def fetch(symbol):
   day=dt.datetime.fromtimestamp(ts,dt.timezone.utc).date().isoformat()
   if START<=day<END:rows.append([day,*vals])
  return rows
+KNOWN.update({"CONSOLEWAY":"CWA.WA","EXCELLENCE":"EXC.WA","ŻABKA":"ZAB.WA"})
 def main():
  root=pathlib.Path("data/top15/ohlcv");root.mkdir(parents=True,exist_ok=True)
  status={}
