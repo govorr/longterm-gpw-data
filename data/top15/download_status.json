@@ -342,9 +342,11 @@
       "last": "2026-10-20"
     },
     "PURE BIOLOGICS": {
-      "status": "error",
-      "ticker": "PUR.WA",
-      "reason": "HTTP Error 404: Not Found"
+      "status": "ok",
+      "ticker": "MQR.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
     },
     "QNA TECHNOLOGY": {
       "status": "ok",
