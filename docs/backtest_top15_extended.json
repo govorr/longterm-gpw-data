@@ -1,0 +1,326 @@
+{
+  "limitations": [
+    "Present-day constituents applied historically (survivorship and look-ahead selection bias)",
+    "Development/holdout split is chronological but constituents are not point-in-time",
+    "Unadjusted Yahoo OHLC; corporate actions and dividends not normalized",
+    "Daily-high TP fills optimistic; no queue/volume constraints",
+    "No tax; 0.2% per-side assumed friction",
+    "Common-date intersection reduces historical sample",
+    "Buy-hold picks first five alphabetical stocks, not an optimized benchmark"
+  ],
+  "symbols": [
+    "ASB",
+    "BCX",
+    "CLD",
+    "CRI",
+    "DAT",
+    "DIG",
+    "ELT",
+    "GRN",
+    "LBW",
+    "PAS",
+    "QNA",
+    "SEV",
+    "SOK"
+  ],
+  "excluded": {
+    "CRQ": "Only 131 daily bars",
+    "S2B": "Only 132 daily bars"
+  },
+  "wig_source": {
+    "%5EWIG": "HTTP Error 404: Not Found",
+    "WIG.WA": "Only 2 bars",
+    "Stooq": "float() argument must be a string or a real number, not 'NoneType'"
+  },
+  "periods": {
+    "full": {
+      "start": "2024-10-03",
+      "end": "2026-10-20",
+      "sessions": 510,
+      "strategies": [
+        {
+          "mode": "tp30",
+          "start": "2024-10-03",
+          "end": "2026-10-20",
+          "initial": 10000.0,
+          "final_equity": 23638.77,
+          "return_pct": 136.39,
+          "max_drawdown_pct": -8.97,
+          "closed_trades": 18,
+          "closed_win_rate_pct": 100.0,
+          "realized_pnl": 16079.03,
+          "unrealized_pnl": -2440.26,
+          "cash": 8787.12,
+          "open_value": 14851.65,
+          "open_positions": 5,
+          "open_symbols": [
+            "ASB",
+            "BCX",
+            "ELT",
+            "SEV",
+            "SOK"
+          ],
+          "max_holding_count": 5,
+          "max_new_allocation_pct": 20
+        },
+        {
+          "mode": "ma50",
+          "start": "2024-10-03",
+          "end": "2026-10-20",
+          "initial": 10000.0,
+          "final_equity": 40489.99,
+          "return_pct": 304.9,
+          "max_drawdown_pct": -12.3,
+          "closed_trades": 48,
+          "closed_win_rate_pct": 56.25,
+          "realized_pnl": 27734.13,
+          "unrealized_pnl": 2755.86,
+          "cash": 18550.74,
+          "open_value": 21939.25,
+          "open_positions": 4,
+          "open_symbols": [
+            "CLD",
+            "DIG",
+            "PAS",
+            "SOK"
+          ],
+          "max_holding_count": 5,
+          "max_new_allocation_pct": 20
+        },
+        {
+          "mode": "half_tp30_ma50",
+          "start": "2024-10-03",
+          "end": "2026-10-20",
+          "initial": 10000.0,
+          "final_equity": 31477.13,
+          "return_pct": 214.77,
+          "max_drawdown_pct": -10.4,
+          "closed_trades": 67,
+          "closed_win_rate_pct": 68.66,
+          "realized_pnl": 19867.39,
+          "unrealized_pnl": 1609.75,
+          "cash": 9401.93,
+          "open_value": 22075.2,
+          "open_positions": 4,
+          "open_symbols": [
+            "CLD",
+            "CRI",
+            "DIG",
+            "PAS"
+          ],
+          "max_holding_count": 5,
+          "max_new_allocation_pct": 20
+        }
+      ],
+      "buy_hold": {
+        "selection": "Alphabetical first five eligible at start; fixed, no rebalance",
+        "symbols": [
+          "ASB",
+          "BCX",
+          "CLD",
+          "CRI",
+          "DAT"
+        ],
+        "return_pct": 278.58,
+        "max_drawdown_pct": -11.54,
+        "final_equity": 37857.55
+      },
+      "wig": {
+        "error": "WIG unavailable"
+      }
+    },
+    "development": {
+      "start": "2024-10-03",
+      "end": "2026-02-05",
+      "sessions": 331,
+      "strategies": [
+        {
+          "mode": "tp30",
+          "start": "2024-10-03",
+          "end": "2026-02-05",
+          "initial": 10000.0,
+          "final_equity": 16727.75,
+          "return_pct": 67.28,
+          "max_drawdown_pct": -8.84,
+          "closed_trades": 9,
+          "closed_win_rate_pct": 100.0,
+          "realized_pnl": 6506.39,
+          "unrealized_pnl": 221.36,
+          "cash": 4013.75,
+          "open_value": 12714.0,
+          "open_positions": 5,
+          "open_symbols": [
+            "BCX",
+            "DIG",
+            "ELT",
+            "GRN",
+            "SOK"
+          ],
+          "max_holding_count": 5,
+          "max_new_allocation_pct": 20
+        },
+        {
+          "mode": "ma50",
+          "start": "2024-10-03",
+          "end": "2026-02-05",
+          "initial": 10000.0,
+          "final_equity": 20819.42,
+          "return_pct": 108.19,
+          "max_drawdown_pct": -10.31,
+          "closed_trades": 30,
+          "closed_win_rate_pct": 53.33,
+          "realized_pnl": 6328.9,
+          "unrealized_pnl": 4490.51,
+          "cash": 311.9,
+          "open_value": 20507.52,
+          "open_positions": 5,
+          "open_symbols": [
+            "ASB",
+            "CLD",
+            "DAT",
+            "DIG",
+            "GRN"
+          ],
+          "max_holding_count": 5,
+          "max_new_allocation_pct": 20
+        },
+        {
+          "mode": "half_tp30_ma50",
+          "start": "2024-10-03",
+          "end": "2026-02-05",
+          "initial": 10000.0,
+          "final_equity": 19869.24,
+          "return_pct": 98.69,
+          "max_drawdown_pct": -10.4,
+          "closed_trades": 42,
+          "closed_win_rate_pct": 66.67,
+          "realized_pnl": 6311.11,
+          "unrealized_pnl": 3558.15,
+          "cash": 2707.36,
+          "open_value": 17161.88,
+          "open_positions": 5,
+          "open_symbols": [
+            "ASB",
+            "CLD",
+            "DAT",
+            "DIG",
+            "GRN"
+          ],
+          "max_holding_count": 5,
+          "max_new_allocation_pct": 20
+        }
+      ],
+      "buy_hold": {
+        "selection": "Alphabetical first five eligible at start; fixed, no rebalance",
+        "symbols": [
+          "ASB",
+          "BCX",
+          "CLD",
+          "CRI",
+          "DAT"
+        ],
+        "return_pct": 123.55,
+        "max_drawdown_pct": -10.5,
+        "final_equity": 22354.57
+      },
+      "wig": {
+        "error": "WIG unavailable"
+      }
+    },
+    "holdout": {
+      "start": "2026-02-06",
+      "end": "2026-10-20",
+      "sessions": 179,
+      "strategies": [
+        {
+          "mode": "tp30",
+          "start": "2026-02-06",
+          "end": "2026-10-20",
+          "initial": 10000.0,
+          "final_equity": 18261.03,
+          "return_pct": 82.61,
+          "max_drawdown_pct": -9.29,
+          "closed_trades": 13,
+          "closed_win_rate_pct": 100.0,
+          "realized_pnl": 9486.69,
+          "unrealized_pnl": -1225.67,
+          "cash": 8205.63,
+          "open_value": 10055.4,
+          "open_positions": 4,
+          "open_symbols": [
+            "CRI",
+            "QNA",
+            "SEV",
+            "SOK"
+          ],
+          "max_holding_count": 5,
+          "max_new_allocation_pct": 20
+        },
+        {
+          "mode": "ma50",
+          "start": "2026-02-06",
+          "end": "2026-10-20",
+          "initial": 10000.0,
+          "final_equity": 19461.57,
+          "return_pct": 94.62,
+          "max_drawdown_pct": -12.05,
+          "closed_trades": 16,
+          "closed_win_rate_pct": 43.75,
+          "realized_pnl": 8099.14,
+          "unrealized_pnl": 1362.45,
+          "cash": 8304.17,
+          "open_value": 11157.4,
+          "open_positions": 4,
+          "open_symbols": [
+            "CLD",
+            "DIG",
+            "PAS",
+            "SOK"
+          ],
+          "max_holding_count": 5,
+          "max_new_allocation_pct": 20
+        },
+        {
+          "mode": "half_tp30_ma50",
+          "start": "2026-02-06",
+          "end": "2026-10-20",
+          "initial": 10000.0,
+          "final_equity": 15917.35,
+          "return_pct": 59.17,
+          "max_drawdown_pct": -9.63,
+          "closed_trades": 22,
+          "closed_win_rate_pct": 59.09,
+          "realized_pnl": 5086.03,
+          "unrealized_pnl": 831.33,
+          "cash": 4378.35,
+          "open_value": 11539.0,
+          "open_positions": 4,
+          "open_symbols": [
+            "CLD",
+            "CRI",
+            "DIG",
+            "PAS"
+          ],
+          "max_holding_count": 5,
+          "max_new_allocation_pct": 20
+        }
+      ],
+      "buy_hold": {
+        "selection": "Alphabetical first five eligible at start; fixed, no rebalance",
+        "symbols": [
+          "ASB",
+          "BCX",
+          "CLD",
+          "CRI",
+          "DAT"
+        ],
+        "return_pct": 79.19,
+        "max_drawdown_pct": -13.11,
+        "final_equity": 17918.63
+      },
+      "wig": {
+        "error": "WIG unavailable"
+      }
+    }
+  }
+}
