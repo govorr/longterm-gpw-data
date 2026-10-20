@@ -71,9 +71,8 @@
       "last": "2026-10-20"
     },
     "BRAND24": {
-      "status": "error",
-      "ticker": "B24.WA",
-      "reason": "HTTP Error 404: Not Found"
+      "status": "excluded_missing_data",
+      "reason": "User approved omission from backtest; retain in historical rankings; do not substitute another constituent"
     },
     "BUDIMEX": {
       "status": "ok",
