@@ -1,0 +1,449 @@
+{
+  "11 BIT": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "4MASS": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "AMICA": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "ANSWEAR": {
+    "bars": 1449,
+    "first": "2021-01-11",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "ARCTIC PAPER": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "ARTIFEX MUNDI": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "ASBIS": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "BIOCELTIX": {
+    "bars": 1239,
+    "first": "2021-11-08",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "BUDIMEX": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "CAPTOR THERAPEUTICS": {
+    "bars": 1380,
+    "first": "2021-04-20",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "CD PROJEKT": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "CELON PHARMA": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "CLOUD TECHNOLOGIES": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "CONSOLEWAY": {
+    "bars": 688,
+    "first": "2024-01-19",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "CREEPY JAR": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "CREOTECH INSTRUMENTS": {
+    "bars": 1257,
+    "first": "2021-10-12",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "CREOTECH QUANTUM": {
+    "bars": 131,
+    "first": "2026-04-17",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "DATAWALK": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "DEKPOL": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "DIGITAL NETWORK": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "ELEKTROTIM": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "ENTER AIR": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "EUROTEL": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "EXCELLENCE": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "GENOMTEC": {
+    "bars": 1402,
+    "first": "2021-03-17",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "GRODNO": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "GRUPA KĘTY": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "JSW": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "K2HOLDING": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "KINO POLSKA": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "KRUK": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "LUBAWA": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "MAKARONY POLSKIE": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "MIRBUD": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "MO-BRUK": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "MOLECURE": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "MOSTOSTAL ZABRZE": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "MOVIE GAMES": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "NOCTILUCA": {
+    "bars": 1132,
+    "first": "2022-04-12",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "NTT SYSTEM": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "ONCOARENDI THERAPEUTICS": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "OT LOGISTICS": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "PASSUS": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "PLAYWAY": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "POINTPACK": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "PRESIDENT STUDIO": {
+    "bars": 341,
+    "first": "2025-06-12",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "PURE BIOLOGICS": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "QNA TECHNOLOGY": {
+    "bars": 711,
+    "first": "2023-12-14",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "QUERCUS TFI": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "RAINBOW TOURS": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "RYVU THERAPEUTICS": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "SCANWAY": {
+    "bars": 756,
+    "first": "2023-10-11",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "SEVENET": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "SONKA": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "SPYROSOFT": {
+    "bars": 1666,
+    "first": "2020-03-05",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "STS HOLDING": {
+    "bars": 1711,
+    "first": "2020-01-01",
+    "last": "2026-10-19",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "SUNTECH": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "SYN2BIO": {
+    "bars": 132,
+    "first": "2026-04-16",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "TORPOL": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "VERCOM": {
+    "bars": 1369,
+    "first": "2021-05-06",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "VIGO PHOTONICS": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "WITTCHEN": {
+    "bars": 1712,
+    "first": "2020-01-01",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 1
+  },
+  "ŻABKA": {
+    "bars": 500,
+    "first": "2024-10-17",
+    "last": "2026-10-20",
+    "weekend_rows": 0,
+    "jan1_rows": 0
+  },
+  "TIM": {
+    "bars": 923,
+    "first": "2020-10-01",
+    "last": "2024-06-04",
+    "source": "Money.pl; turnover is NOT share volume"
+  }
+}

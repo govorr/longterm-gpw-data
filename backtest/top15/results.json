@@ -1,0 +1,66 @@
+{
+  "strategies": [
+    {
+      "mode": "TP30",
+      "start_capital": 10000,
+      "end_equity": 7985.82,
+      "return_pct": -20.14,
+      "max_drawdown_pct": -33.62,
+      "buy_orders": 7,
+      "sell_orders": 2,
+      "open_positions": {
+        "RYVU THERAPEUTICS": 32,
+        "MO-BRUK": 5,
+        "VIGO PHOTONICS": 2,
+        "DATAWALK": 8,
+        "ANSWEAR": 47
+      },
+      "skipped_small_orders": 0
+    },
+    {
+      "mode": "MA50",
+      "start_capital": 10000,
+      "end_equity": 48707.39,
+      "return_pct": 387.07,
+      "max_drawdown_pct": -23.08,
+      "buy_orders": 122,
+      "sell_orders": 118,
+      "open_positions": {
+        "PASSUS": 61,
+        "DIGITAL NETWORK": 25,
+        "CLOUD TECHNOLOGIES": 37,
+        "NTT SYSTEM": 1
+      },
+      "skipped_small_orders": 3
+    },
+    {
+      "mode": "HALF",
+      "start_capital": 10000,
+      "end_equity": 37687.85,
+      "return_pct": 276.88,
+      "max_drawdown_pct": -18.41,
+      "buy_orders": 122,
+      "sell_orders": 145,
+      "open_positions": {
+        "PASSUS": 25,
+        "DIGITAL NETWORK": 20,
+        "CLOUD TECHNOLOGIES": 70,
+        "CREOTECH INSTRUMENTS": 6
+      },
+      "skipped_small_orders": 0
+    }
+  ],
+  "benchmark_wig": {
+    "status": "not_calculated",
+    "reason": "WIG daily price series not included in repository; benchmark pending validated dataset"
+  },
+  "caveats": [
+    "No fees, slippage, dividends or corporate actions modeled",
+    "Historical rank mapping and Yahoo price adjustments need independent audit",
+    "TIM delisting proxy uses last close, not verified cash settlement",
+    "Brand24 omitted by user decision",
+    "Signals evaluated at prior close; orders filled next opening",
+    "No trading at zero-volume sessions is not yet enforced for Yahoo data",
+    "Yahoo price dates and holiday rows require validation"
+  ]
+}
