@@ -1,0 +1,28 @@
+name: Historical TOP15 point-in-time backtest
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/top15-historical-data]
+    paths:
+      - 'scripts/backtest_top15_pit.py'
+      - 'data/top15/historical_rankings.json'
+      - 'data/top15/source/TIM_moneypl.csv'
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/top15-historical-data
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/backtest_top15_pit.py
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backtest/top15
+          git diff --cached --quiet || (git commit -m "Update point-in-time backtest results" && git push)
