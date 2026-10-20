@@ -216,9 +216,11 @@
       "last": "2026-10-20"
     },
     "K2HOLDING": {
-      "status": "error",
-      "ticker": "K2H.WA",
-      "reason": "HTTP Error 404: Not Found"
+      "status": "ok",
+      "ticker": "FAB.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
     },
     "KINO POLSKA": {
       "status": "ok",
