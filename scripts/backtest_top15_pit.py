@@ -98,6 +98,7 @@ def simulate(mode,top_n=15,entry="BREAKOUT"):
    if prev not in features[name] or d not in prices[name] or d in zero_volume.get(name,set()):continue
    sig=features[name][prev]
    if entry=="BREAKOUT":eligible=sig["buy"]
+   elif entry=="SHALLOW_3_8":eligible=sig["trend"] and 3<=sig["pullback_pct"]<=8 and sig["near_ma50"] and sig["rebound"]
    elif entry=="PULLBACK_8_15":eligible=sig["trend"] and 8<=sig["pullback_pct"]<=15 and sig["near_ma50"] and sig["rebound"]
    elif entry=="DEEP_15_25":eligible=sig["trend"] and 15<=sig["pullback_pct"]<=25 and sig["near_ma50"] and sig["rebound"]
    else:raise ValueError("Unknown entry: "+entry)
@@ -126,12 +127,12 @@ for top_n in (3,5,10,15):
    with (OUT/filename).open("w",newline="") as f:
     w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(rows)
 entry_results=[]
-for entry in ("BREAKOUT","PULLBACK_8_15","DEEP_15_25"):
+for entry in ("BREAKOUT","SHALLOW_3_8","PULLBACK_8_15","DEEP_15_25"):
  summary,trades,equity=simulate("MA50",10,entry);entry_results.append(summary)
  for filename,rows,fields in [(entry+"_TOP10_MA50_trades.csv",trades,["date","name","action","shares","price","reason","pnl"]),(entry+"_TOP10_MA50_equity.csv",[dict(date=d,equity=v) for d,v in equity],["date","equity"])]:
   with (OUT/filename).open("w",newline="") as f:
    w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(rows)
-(OUT/"entry_comparison.json").write_text(json.dumps({"strategies":entry_results,"rules":{"PULLBACK_8_15":"8-15% below previous 20-day high; close within 5% of MA50; close above prior session high; close > MA200; rising MA50","DEEP_15_25":"Same but 15-25% correction","BREAKOUT":"Original TOP10 MA50 breakout"},"limitations":["Exploratory parameters, not independently validated","No costs, dividends or complete corporate-action adjustment"]},ensure_ascii=False,indent=2))
+(OUT/"entry_comparison.json").write_text(json.dumps({"strategies":entry_results,"rules":{"SHALLOW_3_8":"3-8% below previous 20-day high; close within 5% of MA50; close above prior session high; close > MA200; rising MA50","PULLBACK_8_15":"8-15% below previous 20-day high; close within 5% of MA50; close above prior session high; close > MA200; rising MA50","DEEP_15_25":"Same but 15-25% correction","BREAKOUT":"Original TOP10 MA50 breakout"},"limitations":["Exploratory parameters, not independently validated","No costs, dividends or complete corporate-action adjustment"]},ensure_ascii=False,indent=2))
 # Independent WIG benchmark from Stooq. Do not silently substitute WIG20.
 def wig_benchmark():
  local=ROOT/"benchmark"/"WIG_daily_2021_2026.csv"
