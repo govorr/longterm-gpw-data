@@ -1,0 +1,448 @@
+{
+  "start": "2020-01-01",
+  "end_exclusive": "2026-10-21",
+  "aliases": {
+    "11 BIT STUDIOS": "11 BIT",
+    "BRAND 24": "BRAND24",
+    "CREOTECH": "CREOTECH INSTRUMENTS",
+    "ENTER": "ENTER AIR",
+    "MAKARONY": "MAKARONY POLSKIE",
+    "MOBRUK": "MO-BRUK",
+    "MOSTOTAL ZABRZE": "MOSTOSTAL ZABRZE",
+    "RAINBOW": "RAINBOW TOURS",
+    "RYVU THERAPUETICS": "RYVU THERAPEUTICS",
+    "VIGO SYSTEM": "VIGO PHOTONICS"
+  },
+  "companies": {
+    "11 BIT": {
+      "status": "ok",
+      "ticker": "11B.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "4MASS": {
+      "status": "ok",
+      "ticker": "4MS.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "AMICA": {
+      "status": "ok",
+      "ticker": "AMC.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "ANSWEAR": {
+      "status": "ok",
+      "ticker": "ANR.WA",
+      "bars": 1449,
+      "first": "2021-01-11",
+      "last": "2026-10-20"
+    },
+    "ARCTIC PAPER": {
+      "status": "ok",
+      "ticker": "ATC.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "ARTIFEX MUNDI": {
+      "status": "ok",
+      "ticker": "ART.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "ASBIS": {
+      "status": "ok",
+      "ticker": "ASB.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "BIOCELTIX": {
+      "status": "ok",
+      "ticker": "BCX.WA",
+      "bars": 1239,
+      "first": "2021-11-08",
+      "last": "2026-10-20"
+    },
+    "BRAND24": {
+      "status": "error",
+      "ticker": "B24.WA",
+      "reason": "HTTP Error 404: Not Found"
+    },
+    "BUDIMEX": {
+      "status": "ok",
+      "ticker": "BDX.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "CAPTOR THERAPEUTICS": {
+      "status": "ok",
+      "ticker": "CTX.WA",
+      "bars": 1380,
+      "first": "2021-04-20",
+      "last": "2026-10-20"
+    },
+    "CD PROJEKT": {
+      "status": "ok",
+      "ticker": "CDR.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "CELON PHARMA": {
+      "status": "ok",
+      "ticker": "CLN.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "CLOUD TECHNOLOGIES": {
+      "status": "ok",
+      "ticker": "CLD.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "CONSOLEWAY": {
+      "status": "unresolved_ticker",
+      "reason": "Manual ticker confirmation required"
+    },
+    "CREEPY JAR": {
+      "status": "ok",
+      "ticker": "CRJ.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "CREOTECH INSTRUMENTS": {
+      "status": "ok",
+      "ticker": "CRI.WA",
+      "bars": 1257,
+      "first": "2021-10-12",
+      "last": "2026-10-20"
+    },
+    "CREOTECH QUANTUM": {
+      "status": "unresolved_ticker",
+      "reason": "Manual ticker confirmation required"
+    },
+    "DATAWALK": {
+      "status": "ok",
+      "ticker": "DAT.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "DEKPOL": {
+      "status": "ok",
+      "ticker": "DEK.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "DIGITAL NETWORK": {
+      "status": "ok",
+      "ticker": "DIG.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "ELEKTROTIM": {
+      "status": "ok",
+      "ticker": "ELT.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "ENTER AIR": {
+      "status": "ok",
+      "ticker": "ENT.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "EUROTEL": {
+      "status": "ok",
+      "ticker": "ETL.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "EXCELLENCE": {
+      "status": "unresolved_ticker",
+      "reason": "Manual ticker confirmation required"
+    },
+    "GENOMTEC": {
+      "status": "ok",
+      "ticker": "GMT.WA",
+      "bars": 1402,
+      "first": "2021-03-17",
+      "last": "2026-10-20"
+    },
+    "GRODNO": {
+      "status": "ok",
+      "ticker": "GRN.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "GRUPA KĘTY": {
+      "status": "ok",
+      "ticker": "KTY.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "JSW": {
+      "status": "ok",
+      "ticker": "JSW.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "K2HOLDING": {
+      "status": "error",
+      "ticker": "K2H.WA",
+      "reason": "HTTP Error 404: Not Found"
+    },
+    "KINO POLSKA": {
+      "status": "ok",
+      "ticker": "KPL.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "KRUK": {
+      "status": "ok",
+      "ticker": "KRU.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "LUBAWA": {
+      "status": "ok",
+      "ticker": "LBW.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "MAKARONY POLSKIE": {
+      "status": "ok",
+      "ticker": "MAK.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "MIRBUD": {
+      "status": "ok",
+      "ticker": "MRB.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "MO-BRUK": {
+      "status": "ok",
+      "ticker": "MBR.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "MOLECURE": {
+      "status": "ok",
+      "ticker": "MOC.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "MOSTOSTAL ZABRZE": {
+      "status": "ok",
+      "ticker": "MSZ.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "MOVIE GAMES": {
+      "status": "ok",
+      "ticker": "MOV.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "NOCTILUCA": {
+      "status": "ok",
+      "ticker": "NCL.WA",
+      "bars": 1132,
+      "first": "2022-04-12",
+      "last": "2026-10-20"
+    },
+    "NTT SYSTEM": {
+      "status": "ok",
+      "ticker": "NTT.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "ONCOARENDI THERAPEUTICS": {
+      "status": "ok",
+      "ticker": "MOC.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "OT LOGISTICS": {
+      "status": "ok",
+      "ticker": "OTS.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "PASSUS": {
+      "status": "ok",
+      "ticker": "PAS.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "PLAYWAY": {
+      "status": "ok",
+      "ticker": "PLW.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "POINTPACK": {
+      "status": "ok",
+      "ticker": "PNT.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "PRESIDENT STUDIO": {
+      "status": "error",
+      "ticker": "PST.WA",
+      "reason": "HTTP Error 404: Not Found"
+    },
+    "PURE BIOLOGICS": {
+      "status": "error",
+      "ticker": "PUR.WA",
+      "reason": "HTTP Error 404: Not Found"
+    },
+    "QNA TECHNOLOGY": {
+      "status": "ok",
+      "ticker": "QNA.WA",
+      "bars": 711,
+      "first": "2023-12-14",
+      "last": "2026-10-20"
+    },
+    "QUERCUS TFI": {
+      "status": "ok",
+      "ticker": "QRS.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "RAINBOW TOURS": {
+      "status": "ok",
+      "ticker": "RBW.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "RYVU THERAPEUTICS": {
+      "status": "ok",
+      "ticker": "RVU.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "SCANWAY": {
+      "status": "ok",
+      "ticker": "SCW.WA",
+      "bars": 756,
+      "first": "2023-10-11",
+      "last": "2026-10-20"
+    },
+    "SEVENET": {
+      "status": "ok",
+      "ticker": "SEV.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "SONKA": {
+      "status": "ok",
+      "ticker": "SOK.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "SPYROSOFT": {
+      "status": "ok",
+      "ticker": "SPR.WA",
+      "bars": 1666,
+      "first": "2020-03-05",
+      "last": "2026-10-20"
+    },
+    "STS HOLDING": {
+      "status": "ok",
+      "ticker": "STS.WA",
+      "bars": 1711,
+      "first": "2020-01-01",
+      "last": "2026-10-19"
+    },
+    "SUNTECH": {
+      "status": "ok",
+      "ticker": "SUN.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "SYN2BIO": {
+      "status": "unresolved_ticker",
+      "reason": "Manual ticker confirmation required"
+    },
+    "TIM": {
+      "status": "error",
+      "ticker": "TIM.WA",
+      "reason": "HTTP Error 404: Not Found"
+    },
+    "TORPOL": {
+      "status": "ok",
+      "ticker": "TOR.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "VERCOM": {
+      "status": "ok",
+      "ticker": "VRC.WA",
+      "bars": 1369,
+      "first": "2021-05-06",
+      "last": "2026-10-20"
+    },
+    "VIGO PHOTONICS": {
+      "status": "ok",
+      "ticker": "VGO.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "WITTCHEN": {
+      "status": "ok",
+      "ticker": "WTN.WA",
+      "bars": 1712,
+      "first": "2020-01-01",
+      "last": "2026-10-20"
+    },
+    "ŻABKA": {
+      "status": "unresolved_ticker",
+      "reason": "Manual ticker confirmation required"
+    }
+  }
+}
