@@ -3,8 +3,8 @@
     {
       "mode": "TP30",
       "start_capital": 10000,
-      "end_equity": 7985.82,
-      "return_pct": -20.14,
+      "end_equity": 8015.1,
+      "return_pct": -19.85,
       "max_drawdown_pct": -33.62,
       "buy_orders": 7,
       "sell_orders": 2,
@@ -20,12 +20,13 @@
     {
       "mode": "MA50",
       "start_capital": 10000,
-      "end_equity": 48707.39,
-      "return_pct": 387.07,
+      "end_equity": 46959.59,
+      "return_pct": 369.6,
       "max_drawdown_pct": -23.08,
       "buy_orders": 122,
-      "sell_orders": 118,
+      "sell_orders": 117,
       "open_positions": {
+        "ASBIS": 151,
         "PASSUS": 61,
         "DIGITAL NETWORK": 25,
         "CLOUD TECHNOLOGIES": 37,
@@ -36,12 +37,13 @@
     {
       "mode": "HALF",
       "start_capital": 10000,
-      "end_equity": 37687.85,
-      "return_pct": 276.88,
+      "end_equity": 37021.65,
+      "return_pct": 270.22,
       "max_drawdown_pct": -18.41,
       "buy_orders": 122,
-      "sell_orders": 145,
+      "sell_orders": 144,
       "open_positions": {
+        "ASBIS": 76,
         "PASSUS": 25,
         "DIGITAL NETWORK": 20,
         "CLOUD TECHNOLOGIES": 70,
@@ -63,10 +65,73 @@
     "method": "WIG total-return index buy-and-hold, first full session after first ranking through last available WIG close"
   },
   "audit": {
+    "backtest_start": "2021-06-29",
+    "backtest_end": "2026-10-19",
+    "raw_holiday_rows": 48,
+    "holiday_rows_remaining": 0,
+    "corporate_event_flags": [
+      {
+        "company": "4MASS",
+        "previous_date": "2020-07-08",
+        "date": "2020-07-09",
+        "close_ratio": 1.8293,
+        "requires_manual_review": true
+      },
+      {
+        "company": "4MASS",
+        "previous_date": "2020-08-07",
+        "date": "2020-08-10",
+        "close_ratio": 0.5263,
+        "requires_manual_review": true
+      },
+      {
+        "company": "MOLECURE",
+        "previous_date": "2020-11-05",
+        "date": "2020-11-06",
+        "close_ratio": 3.1671,
+        "requires_manual_review": true
+      },
+      {
+        "company": "MOLECURE",
+        "previous_date": "2022-06-23",
+        "date": "2022-06-24",
+        "close_ratio": 0.5501,
+        "requires_manual_review": true
+      },
+      {
+        "company": "ONCOARENDI THERAPEUTICS",
+        "previous_date": "2020-11-05",
+        "date": "2020-11-06",
+        "close_ratio": 3.1671,
+        "requires_manual_review": true
+      },
+      {
+        "company": "ONCOARENDI THERAPEUTICS",
+        "previous_date": "2022-06-23",
+        "date": "2022-06-24",
+        "close_ratio": 0.5501,
+        "requires_manual_review": true
+      },
+      {
+        "company": "POINTPACK",
+        "previous_date": "2024-03-26",
+        "date": "2024-03-27",
+        "close_ratio": 0.5071,
+        "requires_manual_review": true
+      },
+      {
+        "company": "PURE BIOLOGICS",
+        "previous_date": "2025-07-02",
+        "date": "2025-07-03",
+        "close_ratio": 0.563,
+        "requires_manual_review": true
+      }
+    ],
     "rankings": 22,
     "ranking_size_valid": true,
     "universe": 64,
     "suspect_january_1_rows": 48,
+    "suspect_january_1_rows_remaining": 0,
     "excluded": [
       "BRAND24"
     ],
@@ -136,19 +201,19 @@
       "ŻABKA": 2
     },
     "limitations": [
-      "Source Yahoo date mapping must be independently verified; Jan 1 bars found",
+      "Raw Yahoo files contain holiday placeholders; holiday rows removed from simulation, timestamp alignment still needs independent cross-source verification",
       "TIM has turnover not share volume; zero-turnover sessions not independently identified",
-      "Corporate actions and cash settlement not verified",
-      "No fees, slippage or dividends"
+      "Corporate action discontinuities flagged for review, not automatically adjusted; TIM cash settlement not independently verified",
+      "No fees, slippage or dividends; WIG is total-return and stock strategies are price-only"
     ]
   },
   "caveats": [
-    "No fees, slippage, dividends or corporate actions modeled",
+    "No fees, slippage or dividend reinvestment; corporate actions flagged but not fully adjusted",
     "Historical rank mapping and Yahoo price adjustments need independent audit",
     "TIM delisting proxy uses last close, not verified cash settlement",
     "Brand24 omitted by user decision",
     "Signals evaluated at prior close; orders filled next opening",
-    "No trading at zero-volume sessions is not yet enforced for Yahoo data",
+    "Yahoo zero-volume sessions blocked for buys and sells; TIM turnover is not share volume",
     "Yahoo price dates and holiday rows require validation"
   ]
 }

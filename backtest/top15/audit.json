@@ -1,8 +1,71 @@
 {
+  "backtest_start": "2021-06-29",
+  "backtest_end": "2026-10-19",
+  "raw_holiday_rows": 48,
+  "holiday_rows_remaining": 0,
+  "corporate_event_flags": [
+    {
+      "company": "4MASS",
+      "previous_date": "2020-07-08",
+      "date": "2020-07-09",
+      "close_ratio": 1.8293,
+      "requires_manual_review": true
+    },
+    {
+      "company": "4MASS",
+      "previous_date": "2020-08-07",
+      "date": "2020-08-10",
+      "close_ratio": 0.5263,
+      "requires_manual_review": true
+    },
+    {
+      "company": "MOLECURE",
+      "previous_date": "2020-11-05",
+      "date": "2020-11-06",
+      "close_ratio": 3.1671,
+      "requires_manual_review": true
+    },
+    {
+      "company": "MOLECURE",
+      "previous_date": "2022-06-23",
+      "date": "2022-06-24",
+      "close_ratio": 0.5501,
+      "requires_manual_review": true
+    },
+    {
+      "company": "ONCOARENDI THERAPEUTICS",
+      "previous_date": "2020-11-05",
+      "date": "2020-11-06",
+      "close_ratio": 3.1671,
+      "requires_manual_review": true
+    },
+    {
+      "company": "ONCOARENDI THERAPEUTICS",
+      "previous_date": "2022-06-23",
+      "date": "2022-06-24",
+      "close_ratio": 0.5501,
+      "requires_manual_review": true
+    },
+    {
+      "company": "POINTPACK",
+      "previous_date": "2024-03-26",
+      "date": "2024-03-27",
+      "close_ratio": 0.5071,
+      "requires_manual_review": true
+    },
+    {
+      "company": "PURE BIOLOGICS",
+      "previous_date": "2025-07-02",
+      "date": "2025-07-03",
+      "close_ratio": 0.563,
+      "requires_manual_review": true
+    }
+  ],
   "rankings": 22,
   "ranking_size_valid": true,
   "universe": 64,
   "suspect_january_1_rows": 48,
+  "suspect_january_1_rows_remaining": 0,
   "excluded": [
     "BRAND24"
   ],
@@ -72,9 +135,9 @@
     "ŻABKA": 2
   },
   "limitations": [
-    "Source Yahoo date mapping must be independently verified; Jan 1 bars found",
+    "Raw Yahoo files contain holiday placeholders; holiday rows removed from simulation, timestamp alignment still needs independent cross-source verification",
     "TIM has turnover not share volume; zero-turnover sessions not independently identified",
-    "Corporate actions and cash settlement not verified",
-    "No fees, slippage or dividends"
+    "Corporate action discontinuities flagged for review, not automatically adjusted; TIM cash settlement not independently verified",
+    "No fees, slippage or dividends; WIG is total-return and stock strategies are price-only"
   ]
 }
