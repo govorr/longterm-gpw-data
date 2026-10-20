@@ -101,12 +101,12 @@ def main():
                 previous=index[day]
             history[s]=index
         except Exception as e: errors[s]=str(e)
-    if errors: raise RuntimeError("Incomplete historical data: "+json.dumps(errors))
+    if len(history) < 8: raise RuntimeError("Too few stocks with sufficient history: "+json.dumps(errors))
     common=sorted(set.intersection(*(set(x) for x in history.values())))
     # At least 200 prior bars for every stock. Start at first common date with valid MA200.
     dates=[d for d in common if all(history[s][d].get("ma200") is not None and (history[s][d].get("prev") or {}).get("ma200") is not None for s in history)]
     if len(dates)<30: raise RuntimeError("Not enough common trading sessions for unbiased comparison")
-    result={"method":"Longterm TOP15 current-constituent research; survivorship bias; unadjusted Yahoo OHLC; 0.2% per side assumed; no dividends, taxes or slippage beyond fee; next-open signals; daily high TP fill; cash allowed","symbols":list(STOCKS),"sessions":len(dates),"results":[simulate(history,m,dates) for m in MODES]}
+    result={"method":"Longterm TOP15 current-constituent research; survivorship bias; unadjusted Yahoo OHLC; 0.2% per side assumed; no dividends, taxes or slippage beyond fee; next-open signals; daily high TP fill; cash allowed","symbols":list(history),"excluded_symbols":errors,"sessions":len(dates),"results":[simulate(history,m,dates) for m in MODES]}
     pathlib.Path("docs").mkdir(exist_ok=True)
     pathlib.Path("docs/backtest_top15.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
     for x in result["results"]:
