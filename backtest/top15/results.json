@@ -51,12 +51,16 @@
     }
   ],
   "benchmark_wig": {
-    "status": "unavailable",
-    "errors": [
-      "WIG coverage too short: 0",
-      "WIG coverage too short: 0",
-      "Yahoo WIG.WA: Yahoo WIG coverage too short: 1"
-    ]
+    "status": "ok",
+    "source": "User-supplied WIG daily archive",
+    "first": "2021-06-29",
+    "last": "2026-10-19",
+    "bars": 1331,
+    "first_close": 67264.87,
+    "last_close": 158738.35,
+    "return_pct": 135.99,
+    "end_equity_10000": 23599.0,
+    "method": "WIG total-return index buy-and-hold, first full session after first ranking through last available WIG close"
   },
   "audit": {
     "rankings": 22,
