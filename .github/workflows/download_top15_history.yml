@@ -7,6 +7,9 @@ on:
       - scripts/backtest_top15_pit.py
       - .github/workflows/download_top15_history.yml
   workflow_dispatch:
+concurrency:
+  group: historical-top15-research
+  cancel-in-progress: false
 permissions:
   contents: write
 jobs:
@@ -27,4 +30,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/top15/ backtest/top15/
-          git diff --cached --quiet || (git commit -m "Publish TOP15 historical OHLCV and coverage" && git push)
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish TOP15 historical OHLCV and coverage"
+            git pull --rebase origin research/top15-historical-data
+            git push origin HEAD:research/top15-historical-data
+          fi
