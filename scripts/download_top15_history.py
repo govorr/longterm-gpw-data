@@ -26,6 +26,9 @@ def main():
  root=pathlib.Path("data/top15/ohlcv");root.mkdir(parents=True,exist_ok=True)
  status={}
  for name in NAMES:
+  if name=="BRAND24":
+   status[name]={"status":"excluded_missing_data","reason":"User approved omission from backtest; retain in historical rankings; do not substitute another constituent"}
+   continue
   symbol=KNOWN.get(name)
   if not symbol:
    status[name]={"status":"unresolved_ticker","reason":"Manual ticker confirmation required"};continue
