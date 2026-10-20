@@ -2,6 +2,7 @@
   "strategies": [
     {
       "mode": "TP30",
+      "entry": "BREAKOUT",
       "top_n": 3,
       "start_capital": 10000,
       "end_equity": 8771.73,
@@ -20,6 +21,7 @@
     },
     {
       "mode": "MA50",
+      "entry": "BREAKOUT",
       "top_n": 3,
       "start_capital": 10000,
       "end_equity": 19814.51,
@@ -35,6 +37,7 @@
     },
     {
       "mode": "HALF",
+      "entry": "BREAKOUT",
       "top_n": 3,
       "start_capital": 10000,
       "end_equity": 16893.53,
@@ -50,6 +53,7 @@
     },
     {
       "mode": "TP30",
+      "entry": "BREAKOUT",
       "top_n": 5,
       "start_capital": 10000,
       "end_equity": 6414.9,
@@ -68,6 +72,7 @@
     },
     {
       "mode": "MA50",
+      "entry": "BREAKOUT",
       "top_n": 5,
       "start_capital": 10000,
       "end_equity": 30082.38,
@@ -85,6 +90,7 @@
     },
     {
       "mode": "HALF",
+      "entry": "BREAKOUT",
       "top_n": 5,
       "start_capital": 10000,
       "end_equity": 23927.07,
@@ -102,6 +108,7 @@
     },
     {
       "mode": "TP30",
+      "entry": "BREAKOUT",
       "top_n": 10,
       "start_capital": 10000,
       "end_equity": 7667.7,
@@ -120,6 +127,7 @@
     },
     {
       "mode": "MA50",
+      "entry": "BREAKOUT",
       "top_n": 10,
       "start_capital": 10000,
       "end_equity": 53654.39,
@@ -138,6 +146,7 @@
     },
     {
       "mode": "HALF",
+      "entry": "BREAKOUT",
       "top_n": 10,
       "start_capital": 10000,
       "end_equity": 39079.54,
@@ -156,6 +165,7 @@
     },
     {
       "mode": "TP30",
+      "entry": "BREAKOUT",
       "top_n": 15,
       "start_capital": 10000,
       "end_equity": 8015.1,
@@ -174,6 +184,7 @@
     },
     {
       "mode": "MA50",
+      "entry": "BREAKOUT",
       "top_n": 15,
       "start_capital": 10000,
       "end_equity": 46959.59,
@@ -192,6 +203,7 @@
     },
     {
       "mode": "HALF",
+      "entry": "BREAKOUT",
       "top_n": 15,
       "start_capital": 10000,
       "end_equity": 37021.65,
