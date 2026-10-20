@@ -126,6 +126,24 @@ def wig_benchmark():
    start=dates[0];end=dates[-1]
    return {"status":"ok","source":url,"first":start,"last":end,"bars":len(dates),"first_close":values[start],"last_close":values[end],"return_pct":round((values[end]/values[start]-1)*100,2),"end_equity_10000":round(10000*values[end]/values[start],2)}
   except Exception as e:errors.append(str(e))
+ # Yahoo index fallback (validated exchange index, not WIG20)
+ try:
+  start=int(dt.datetime(2021,6,1,tzinfo=dt.timezone.utc).timestamp())
+  end=int(dt.datetime(2026,10,21,tzinfo=dt.timezone.utc).timestamp())
+  url="https://query1.finance.yahoo.com/v8/finance/chart/WIG.WA?period1="+str(start)+"&period2="+str(end)+"&interval=1d"
+  req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0","Accept":"application/json"})
+  with urllib.request.urlopen(req,timeout=30) as resp:obj=json.load(resp)["chart"]["result"][0]
+  from zoneinfo import ZoneInfo
+  vals={}
+  for ts,close in zip(obj["timestamp"],obj["indicators"]["quote"][0]["close"]):
+   if close is None:continue
+   day=dt.datetime.fromtimestamp(ts,ZoneInfo("Europe/Warsaw")).date().isoformat()
+   vals[day]=float(close)
+  dates=sorted(d for d in vals if "2021-06-28"<=d<="2026-10-20")
+  if len(dates)<900:raise ValueError("Yahoo WIG coverage too short: "+str(len(dates)))
+  first,last=dates[0],dates[-1]
+  return {"status":"ok","source":"Yahoo Finance WIG.WA","first":first,"last":last,"bars":len(dates),"first_close":vals[first],"last_close":vals[last],"return_pct":round((vals[last]/vals[first]-1)*100,2),"end_equity_10000":round(10000*vals[last]/vals[first],2)}
+ except Exception as e:errors.append("Yahoo WIG.WA: "+str(e))
  return {"status":"unavailable","errors":errors}
 benchmark=wig_benchmark()
 audit={"rankings":len(reports),"ranking_size_valid":all(len(r["ranked_companies"])==15 for r in reports),"universe":len(prices),"suspect_january_1_rows":sum(q.get("jan1_rows",0) for q in quality.values()),"excluded":["BRAND24"],"zero_volume_rows":{k:len(v) for k,v in zero_volume.items() if v},"limitations":["Source Yahoo date mapping must be independently verified; Jan 1 bars found","TIM has turnover not share volume; zero-turnover sessions not independently identified","Corporate actions and cash settlement not verified","No fees, slippage or dividends"]}
