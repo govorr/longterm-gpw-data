@@ -4,6 +4,7 @@ on:
     branches: [research/top15-historical-data]
     paths:
       - scripts/download_top15_history.py
+      - scripts/backtest_top15_pit.py
       - .github/workflows/download_top15_history.yml
   workflow_dispatch:
 permissions:
