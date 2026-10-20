@@ -110,6 +110,18 @@ for mode in ("TP30","MA50","HALF"):
    w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(rows)
 # Independent WIG benchmark from Stooq. Do not silently substitute WIG20.
 def wig_benchmark():
+ local=ROOT/"benchmark"/"WIG_daily_2021_2026.csv"
+ if local.exists():
+  rows=read_csv(local);vals={}
+  for row in rows:
+   if row.get("<TICKER>")!="WIG" or row.get("<PER>")!="D":continue
+   raw=row["<DATE>"];d=raw[:4]+"-"+raw[4:6]+"-"+raw[6:8]
+   val=float(row["<CLOSE>"])
+   if val>0:vals[d]=val
+  dates=sorted(d for d in vals if "2021-06-29"<=d<="2026-10-19")
+  if len(dates)<1200:raise ValueError("Uploaded WIG benchmark missing sessions")
+  first,last=dates[0],dates[-1]
+  return {"status":"ok","source":"User-supplied WIG daily archive","first":first,"last":last,"bars":len(dates),"first_close":vals[first],"last_close":vals[last],"return_pct":round((vals[last]/vals[first]-1)*100,2),"end_equity_10000":round(10000*vals[last]/vals[first],2),"method":"WIG total-return index buy-and-hold, first full session after first ranking through last available WIG close"}
  urls=["https://stooq.pl/q/d/l/?s=wig&d1=20210601&d2=20261021&i=d","https://stooq.com/q/d/l/?s=wig&d1=20210601&d2=20261021&i=d"]
  errors=[]
  for url in urls:
