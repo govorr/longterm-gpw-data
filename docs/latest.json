@@ -1,6 +1,6 @@
 {
   "source": "Yahoo Finance chart API (unofficial)",
-  "generated_at_utc": "2026-10-20T17:41:58.289666+00:00",
+  "generated_at_utc": "2026-10-20T17:38:35.627756+00:00",
   "strategy": "Longterm TOP 15 – technical screen only",
   "stocks": {
     "CRI": {
@@ -187,16 +187,16 @@
       "technical_buy_candidate": false,
       "history_sessions": 498
     },
-    "SOK": {
+    "SON": {
       "name": "Sonka",
-      "yahoo_ticker": "SOK.WA",
+      "yahoo_ticker": "SON.WA",
       "date": "2026-10-20",
-      "close": 11.05,
-      "volume": 2727,
-      "ma50": 10.8204,
-      "ma200": 10.3088,
-      "atr14": 0.4971,
-      "previous_20d_high": 11.5,
+      "close": 12.5,
+      "volume": 1504,
+      "ma50": 12.956,
+      "ma200": 14.2438,
+      "atr14": 0.2429,
+      "previous_20d_high": 13.0,
       "technical_buy_candidate": false,
       "history_sessions": 498
     }
