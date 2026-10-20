@@ -104,7 +104,7 @@ def main():
     if errors: raise RuntimeError("Incomplete historical data: "+json.dumps(errors))
     common=sorted(set.intersection(*(set(x) for x in history.values())))
     # At least 200 prior bars for every stock. Start at first common date with valid MA200.
-    dates=[d for d in common if all(history[s][d].get("ma200") is not None and history[s][d].get("prev",{}).get("ma200") is not None for s in history)]
+    dates=[d for d in common if all(history[s][d].get("ma200") is not None and (history[s][d].get("prev") or {}).get("ma200") is not None for s in history)]
     if len(dates)<30: raise RuntimeError("Not enough common trading sessions for unbiased comparison")
     result={"method":"Longterm TOP15 current-constituent research; survivorship bias; unadjusted Yahoo OHLC; 0.2% per side assumed; no dividends, taxes or slippage beyond fee; next-open signals; daily high TP fill; cash allowed","symbols":list(STOCKS),"sessions":len(dates),"results":[simulate(history,m,dates) for m in MODES]}
     pathlib.Path("docs").mkdir(exist_ok=True)
