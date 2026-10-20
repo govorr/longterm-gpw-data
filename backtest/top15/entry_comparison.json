@@ -21,6 +21,22 @@
     },
     {
       "mode": "MA50",
+      "entry": "SHALLOW_3_8",
+      "top_n": 10,
+      "start_capital": 10000,
+      "end_equity": 38238.34,
+      "return_pct": 282.38,
+      "max_drawdown_pct": -14.35,
+      "buy_orders": 137,
+      "sell_orders": 135,
+      "open_positions": {
+        "ASBIS": 139,
+        "DIGITAL NETWORK": 22
+      },
+      "skipped_small_orders": 3
+    },
+    {
+      "mode": "MA50",
       "entry": "PULLBACK_8_15",
       "top_n": 10,
       "start_capital": 10000,
@@ -49,6 +65,7 @@
     }
   ],
   "rules": {
+    "SHALLOW_3_8": "3-8% below previous 20-day high; close within 5% of MA50; close above prior session high; close > MA200; rising MA50",
     "PULLBACK_8_15": "8-15% below previous 20-day high; close within 5% of MA50; close above prior session high; close > MA200; rising MA50",
     "DEEP_15_25": "Same but 15-25% correction",
     "BREAKOUT": "Original TOP10 MA50 breakout"
