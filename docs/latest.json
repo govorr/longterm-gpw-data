@@ -1,6 +1,6 @@
 {
   "source": "Yahoo Finance chart API (unofficial)",
-  "generated_at_utc": "2026-11-05T18:46:45.356109+00:00",
+  "generated_at_utc": "2026-11-05T19:10:00.553714+00:00",
   "strategy": "Longterm TOP 15 – technical screen only",
   "stocks": {
     "CRI": {
@@ -26,6 +26,19 @@
       "ma200": 96.4004,
       "atr14": 12.6643,
       "previous_20d_high": 193.8,
+      "technical_buy_candidate": false,
+      "history_sessions": 500
+    },
+    "NTT": {
+      "name": "NTT System",
+      "yahoo_ticker": "NTT.WA",
+      "date": "2026-11-05",
+      "close": 27.2,
+      "volume": 244519,
+      "ma50": 22.383,
+      "ma200": 15.3143,
+      "atr14": 4.7143,
+      "previous_20d_high": 43.5,
       "technical_buy_candidate": false,
       "history_sessions": 500
     },
