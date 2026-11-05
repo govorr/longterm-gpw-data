@@ -14,6 +14,7 @@ from statistics import mean
 STOCKS = {
     "CRI": "Creotech Instruments",
     "ASB": "ASBIS",
+    "NTT": "NTT System",
     "CRQ": "Creotech Quantum",
     "DIG": "Digital Network",
     "LBW": "Lubawa",
