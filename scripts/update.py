@@ -15,6 +15,8 @@ STOCKS = {
     "CRI": "Creotech Instruments",
     "ASB": "ASBIS",
     "NTT": "NTT System",
+    "SCW": "Scanway",
+    "QRS": "Quercus TFI",
     "CRQ": "Creotech Quantum",
     "DIG": "Digital Network",
     "LBW": "Lubawa",
@@ -63,39 +65,38 @@ def fetch(symbol):
 def metrics(rows):
     if not rows:
         raise ValueError("No OHLCV candles")
-    if len(rows) < 201:
-        last = rows[-1]
-        return {"date": last["date"], "close": round(last["close"], 4),
-                "volume": int(last["volume"]), "ma50": None, "ma200": None,
-                "atr14": None, "previous_20d_high": None,
-                "technical_buy_candidate": False, "history_sessions": len(rows),
-                "note": "Insufficient history for MA200; no buy signal"}
     closes = [r["close"] for r in rows]
+    n = len(rows)
+    ma50 = mean(closes[-50:]) if n >= 50 else None
+    ma50_prev = mean(closes[-51:-1]) if n >= 51 else None
+    ma200 = mean(closes[-200:]) if n >= 200 else None
+    prev20_high = max(r["high"] for r in rows[-21:-1]) if n >= 21 else None
     true_ranges = []
     for i, r in enumerate(rows):
         previous = closes[i - 1] if i else closes[0]
         true_ranges.append(max(r["high"] - r["low"], abs(r["high"] - previous), abs(r["low"] - previous)))
-    ma50 = mean(closes[-50:])
-    ma50_prev = mean(closes[-51:-1])
-    ma200 = mean(closes[-200:])
-    atr14 = mean(true_ranges[-14:])
-    prev20_high = max(r["high"] for r in rows[-21:-1])
+    atr14 = mean(true_ranges[-14:]) if n >= 14 else None
     last = rows[-1]
-    return {
-        "date": last["date"],
-        "close": round(last["close"], 4),
+    result = {
+        "date": last["date"], "close": round(last["close"], 4),
         "volume": int(last["volume"]),
-        "ma50": round(ma50, 4),
-        "ma200": round(ma200, 4),
-        "atr14": round(atr14, 4),
-        "previous_20d_high": round(prev20_high, 4),
-        "technical_buy_candidate": bool(last["close"] > ma200 and ma50 > ma50_prev and last["close"] > prev20_high),
-        "history_sessions": len(rows),
+        "ma50": round(ma50, 4) if ma50 is not None else None,
+        "ma50_previous": round(ma50_prev, 4) if ma50_prev is not None else None,
+        "ma200": round(ma200, 4) if ma200 is not None else None,
+        "atr14": round(atr14, 4) if atr14 is not None else None,
+        "previous_20d_high": round(prev20_high, 4) if prev20_high is not None else None,
+        "technical_buy_candidate": bool(ma200 is not None and ma50_prev is not None and
+            prev20_high is not None and last["close"] > ma200 and
+            ma50 > ma50_prev and last["close"] > prev20_high),
+        "history_sessions": n,
     }
+    if ma200 is None:
+        result["note"] = "Insufficient history for MA200; no buy signal"
+    return result
 
 def main():
     data = {"source": "Yahoo Finance chart API (unofficial)", "generated_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
-            "strategy": "Longterm TOP 15 – technical screen only", "stocks": {}, "errors": {}}
+            "strategy": "Longterm GPW – technical screen only", "stocks": {}, "errors": {}}
     for symbol, name in STOCKS.items():
         try:
             row = metrics(fetch(symbol))
@@ -118,7 +119,7 @@ def main():
     data["session_date"] = last_day.isoformat()
     pathlib.Path("docs").mkdir(exist_ok=True)
     pathlib.Path("docs/latest.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("SUCCESS: verified data for 15 symbols", data["session_date"])
+    print("SUCCESS: verified data for", data["session_date"])
 
 if __name__ == "__main__":
     main()
