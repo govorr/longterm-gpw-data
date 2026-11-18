@@ -2,8 +2,9 @@ name: Yahoo GPW daily update
 on:
   workflow_dispatch:
   schedule:
+    # 20:00 Warsaw is 18:00 UTC in summer and 19:00 UTC in winter.
+    - cron: '0 18 * * 1-5'
     - cron: '0 19 * * 1-5'
-      timezone: 'Europe/Warsaw'
 permissions:
   contents: write
 jobs:
@@ -15,9 +16,24 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+      - name: Check Warsaw schedule window
+        id: timing
+        run: |
+          python - <<'PY'
+          import datetime as dt
+          import os
+          from zoneinfo import ZoneInfo
+          now = dt.datetime.now(ZoneInfo('Europe/Warsaw'))
+          allowed = os.environ.get('GITHUB_EVENT_NAME') == 'workflow_dispatch' or now.hour == 20
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'run={str(allowed).lower()}\n')
+          print(f'Warsaw time: {now.isoformat()}; execute: {allowed}')
+          PY
       - name: Download and calculate
+        if: steps.timing.outputs.run == 'true'
         run: python scripts/update.py
       - name: Publish verified results
+        if: steps.timing.outputs.run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
