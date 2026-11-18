@@ -113,7 +113,13 @@ def main():
     last_day = dt.date.fromisoformat(next(iter(dates)))
     today_warsaw = dt.datetime.now(ZoneInfo("Europe/Warsaw")).date()
     if today_warsaw.weekday() < 5 and last_day != today_warsaw:
-        sys.exit("ERROR: latest session not from today; NOT publishing: " + last_day.isoformat())
+        # Before the scheduled evening update, an older final bar is expected.
+        # Do not publish stale data or mark a premature manual run as failed.
+        now_warsaw = dt.datetime.now(ZoneInfo("Europe/Warsaw"))
+        if now_warsaw.hour < 19:
+            print("SKIP: current GPW session not finalized yet; last final bar:", last_day.isoformat())
+            return
+        sys.exit("ERROR: latest session not from today after market close; NOT publishing: " + last_day.isoformat())
     if (today_warsaw - last_day).days > 4:
         sys.exit("ERROR: stale data; NOT publishing")
     data["session_date"] = last_day.isoformat()
