@@ -2,9 +2,9 @@ name: Yahoo GPW daily update
 on:
   workflow_dispatch:
   schedule:
-    # 20:00 Warsaw is 18:00 UTC in summer and 19:00 UTC in winter.
-    - cron: '0 18 * * 1-5'
-    - cron: '0 19 * * 1-5'
+    # Retry hourly in UTC; local-time guard below selects 20:00-23:59 Warsaw.
+    # :17 avoids the top-of-hour GitHub Actions congestion.
+    - cron: '17 18-22 * * 1-5'
 permissions:
   contents: write
 jobs:
@@ -24,16 +24,39 @@ jobs:
           import os
           from zoneinfo import ZoneInfo
           now = dt.datetime.now(ZoneInfo('Europe/Warsaw'))
-          allowed = os.environ.get('GITHUB_EVENT_NAME') == 'workflow_dispatch' or now.hour == 20
+          allowed = os.environ.get('GITHUB_EVENT_NAME') == 'workflow_dispatch' or (now.weekday() < 5 and 20 <= now.hour <= 23)
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
               output.write(f'run={str(allowed).lower()}\n')
           print(f'Warsaw time: {now.isoformat()}; execute: {allowed}')
           PY
-      - name: Download and calculate
+      - name: Check if today's snapshot is already published
         if: steps.timing.outputs.run == 'true'
+        id: freshness
+        run: |
+          python - <<'PY'
+          import datetime as dt
+          import json
+          import os
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          path = Path('docs/latest.json')
+          today = dt.datetime.now(ZoneInfo('Europe/Warsaw')).date().isoformat()
+          try:
+              current = json.loads(path.read_text(encoding='utf-8'))
+              complete = current.get('session_date') == today and all(
+                  item.get('date') == today for item in current.get('stocks', {}).values()
+              ) and bool(current.get('stocks')) and not current.get('errors')
+          except (OSError, ValueError, TypeError):
+              complete = False
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'needed={str(not complete).lower()}\n')
+          print(f'Snapshot for {today} already published: {complete}')
+          PY
+      - name: Download and calculate
+        if: steps.timing.outputs.run == 'true' && steps.freshness.outputs.needed == 'true'
         run: python scripts/update.py
       - name: Publish verified results
-        if: steps.timing.outputs.run == 'true'
+        if: steps.timing.outputs.run == 'true' && steps.freshness.outputs.needed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
