@@ -1,6 +1,10 @@
 name: Yahoo GPW daily update
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/gpw-trigger.txt'
   schedule:
     # Retry hourly in UTC; local-time guard below selects 20:00-23:59 Warsaw.
     # :17 avoids the top-of-hour GitHub Actions congestion.
