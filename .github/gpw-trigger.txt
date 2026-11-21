@@ -1,0 +1,1 @@
+GPW external heartbeat. Update this file with the current Warsaw date and time to request a new daily data refresh.
