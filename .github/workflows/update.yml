@@ -28,7 +28,8 @@ jobs:
           import os
           from zoneinfo import ZoneInfo
           now = dt.datetime.now(ZoneInfo('Europe/Warsaw'))
-          allowed = os.environ.get('GITHUB_EVENT_NAME') == 'workflow_dispatch' or (now.weekday() < 5 and 20 <= now.hour <= 23)
+          event = os.environ.get('GITHUB_EVENT_NAME')
+          allowed = event == 'workflow_dispatch' or (now.weekday() < 5 and ((event == 'push' and 19 <= now.hour <= 23) or (event == 'schedule' and 20 <= now.hour <= 23)))
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
               output.write(f'run={str(allowed).lower()}\n')
           print(f'Warsaw time: {now.isoformat()}; execute: {allowed}')
